@@ -1,32 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Анастасия
- * Date: 06.01.2019
- * Time: 23:01
- */
 
 namespace models;
 
-use services\Db;
+use interfaces\IDb;
+use interfaces\IModel;
 
-abstract class Model
+abstract class Model implements IModel
 {
     protected $db;
-    protected $tableName;
 
-    public function __construct()
+    public function __construct(IDb $db)
     {
-        $this->db = new Db();
+        $this->db = $db;
     }
 
-    public function getOne($id) {
-        $sql = 'SELECT * FROM ($this->tableName) WHERE id = {$id}';
+    public function getOne(int $id) {
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE id = {$id}";
         return $this->db->queryOne($sql);
     }
 
     public function getAll() {
-        $sql = 'SELECT * FROM ($this->tableName)';
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName}";
         return $this->db->queryAll($sql);
     }
 }

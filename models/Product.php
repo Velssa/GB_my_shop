@@ -8,7 +8,10 @@ class Product extends Model
     public $name;
     public $description;
     public $price;
+    public $category_id;
     public $vendor_id;
 
-    protected $tableName = 'products';
+    public function getTableName():string {
+        return 'products';
+    }
 }
