@@ -13,14 +13,17 @@ abstract class Model implements IModel
     {
         $this->db = Db::getInstance();
     }
+
     /** @return static */
-    public function getOne($id) {
+    public function getOne($id)
+    {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE id = :id";
         return Db::getInstance()->queryObject($sql, [":id" => $id], get_called_class())[0];
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $tableName = $this->getTableName();
         $sql = "SELECT * FROM {$tableName}";
         return Db::getInstance()->queryAll($sql);
@@ -33,14 +36,15 @@ abstract class Model implements IModel
         return $this->db->execute($sql, [":id" => $this->id]);
     }
 
-    public function insert() {
+    public function insert()
+    {
         $tableName = static::getTableName();
 
         $params = [];
         $columns = [];
 
-        foreach ($this as $key => $value){
-            if($key == 'db'){
+        foreach ($this as $key => $value) {
+            if ($key == 'db') {
                 continue;
             }
 
@@ -56,41 +60,37 @@ abstract class Model implements IModel
         $this->id = $this->db->getLastInsetId();
     }
 
-    public function update() {
+    public function update()
+    {
         $tableName = static::getTableName();
 
+        $paramsAll = [];
         $params = [];
-        $columns = [];
 
-        foreach ($this as $key => $value){
-            if($key == 'db' || $key == 'id'){
+        foreach ($this as $key => $value) {
+            if ($key == 'db' || $key == 'id') {
                 continue;
             }
 
-            $params[] = "{$key} = :{$key}";
-            $columns[":{$key}"] = $value;
+            $paramsAll[] = "{$key} = :{$key}";
+            $params[":{$key}"] = $value;
         }
 
-        var_dump($params);
-        echo '<br>';
-        var_dump($columns);
-        echo '<br>';
-
-        $placeholders = implode(", ", $params);
+        $placeholders = implode(", ", $paramsAll);
         $id = [":id" => $this->id];
-        $result = array_merge($id, $columns);
+        $result = array_merge($id, $params);
 
-        var_dump($placeholders);
-        echo '<br><br>';
 
-            $sql = "UPDATE {$tableName} SET {$placeholders} WHERE id = :id";
-            var_dump($sql);
-            echo '<br>';
-        var_dump($sql, $result);
+        $sql = "UPDATE {$tableName} SET {$placeholders} WHERE id = :id";
         return $this->db->execute($sql, $result);
     }
 
-    public function save() {
+    public function save()
+    {
+        if($this->id == null) {
+            $this->insert();
+        }
 
+        $this->update();
     }
 }

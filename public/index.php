@@ -12,12 +12,16 @@ use app\models\Product;
 echo "<br><br>";
 
 $product = (new Product())->getOne(8);
-$product->name = "Пледище";
-$product->description = "";
-$product->price = "3500";
-$product->category_id = "1";
-$product->vendor_id = "1";
+$product->name = "Плед";
 
-$product->update();
+$product->save();
 
-//var_dump($product->getOne(8));
+//$product = new Product();
+//$product->name = "Шапка-ушанка";
+//$product->description = "Брендовая шапка ушанка на все случаи жизни";
+//$product->price = "500";
+//$product->category_id = "1";
+//$product->vendor_id = "1";
+
+
+var_dump($product->getAll());
