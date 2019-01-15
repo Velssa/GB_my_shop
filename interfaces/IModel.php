@@ -1,13 +1,13 @@
 <?php
 
-namespace interfaces;
+namespace app\interfaces;
 
 interface IModel
 {
-    function getOne(int $id);
+    function getOne($id);
 
     function getAll();
 
-    function getTableName() : string;
+    function getTableName():string ;
 
 }
