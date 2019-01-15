@@ -3,7 +3,10 @@
 class Autoloader
 {
     public function loadClass ($className) {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/' . strtolower(str_replace('\\', '/', $className));
-        spl_autoload($path);
+        $path = str_replace("\\", "/", $className);
+        $className = str_replace("app/",
+            $_SERVER['DOCUMENT_ROOT'] . "/../",
+            $path);
+        spl_autoload($className);
     }
 }
