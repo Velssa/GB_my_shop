@@ -2,13 +2,15 @@
 
 namespace app\models;
 
-class News extends Model
+class News extends Record
 {
     public $id;
     public $name;
+    public $data;
     public $description;
 
-    public function getTableName():string {
+
+    public static function getTableName():string {
         return 'news';
     }
 }

@@ -1,0 +1,42 @@
+
+.header {
+    height: 100px;
+    background: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+h1 {
+    color: red;
+    font-size: 22px;
+}
+
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.catalog {
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.cat-product {
+    width: 30%;
+    margin: 5px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.footer {
+    height: 100px;
+    background: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}

@@ -3,7 +3,7 @@
 namespace app\models;
 
 
-class Order extends Model
+class Order extends Record
 {
     public $id;
     public $user_id;
@@ -11,7 +11,7 @@ class Order extends Model
     public $quantity;
     public $total_price;
 
-    public function getTableName():string {
+    public static function getTableName():string {
         return 'order';
     }
 }

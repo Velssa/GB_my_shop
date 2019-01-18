@@ -3,7 +3,7 @@
 namespace app\models;
 
 
-class Product extends Model
+class Product extends Record
 {
     public $id;
     public $name;
@@ -29,7 +29,7 @@ class Product extends Model
         $this->vendor_id = $vendor_id;
     }
 
-    public function getTableName():string {
+    public static function getTableName():string {
         return 'products';
     }
 }

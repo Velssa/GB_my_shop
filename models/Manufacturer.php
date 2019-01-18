@@ -2,13 +2,13 @@
 namespace app\models;
 
 
-class Manufacturer extends Model
+class Manufacturer extends Record
 {
     public $id;
     public $name;
     public $description;
 
-    public function getTableName():string {
+    public static function getTableName():string {
         return 'manufacturer';
     }
 }
