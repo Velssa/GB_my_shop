@@ -1,0 +1,17 @@
+ {
+    "name": "domains/gb-my-shop",
+    "authors": [
+        {
+            "name": "Velssa MoonCat",
+            "email": "craneflop@mail.ru"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.6"
+    },
+     "autoload": {
+         "psr-4": {
+             "app\\" : "./"
+         }
+     }
+ }

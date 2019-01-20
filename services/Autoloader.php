@@ -1,5 +1,7 @@
 <?php
 
+namespace app\services;
+
 class Autoloader
 {
     public function loadClass ($className) {

@@ -3,6 +3,9 @@
 namespace app\controllers;
 
 
+
+use app\interfaces\IRenderer;
+
 abstract class Controller
 {
     protected $action;
@@ -10,6 +13,12 @@ abstract class Controller
     protected $layout = "main";
     protected $useLayout = true;
 
+    protected $renderer;
+
+    public function __construct(IRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
 
     public function runAction($action = null)
     {
@@ -35,10 +44,6 @@ abstract class Controller
 
     protected function renderTemplate($template, $params = [])
     {
-        ob_start();
-        $templatePath = TEMPLATES_DIR . $template . ".php";
-        extract($params);
-        include $templatePath;
-        return ob_get_clean();
+       return $this->renderer->render($template, $params);
     }
 }

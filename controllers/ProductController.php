@@ -9,6 +9,7 @@ class ProductController extends Controller {
     {
         $product = \app\models\Product::getAll();
         echo $this->render("catalog", ['product' => $product]);
+
     }
 
     public function actionCard()
