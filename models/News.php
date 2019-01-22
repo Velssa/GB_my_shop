@@ -9,8 +9,4 @@ class News extends Record
     public $data;
     public $description;
 
-
-    public static function getTableName():string {
-        return 'news';
-    }
 }

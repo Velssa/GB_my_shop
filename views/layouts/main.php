@@ -9,10 +9,28 @@
     <title>Интернет-магазин PHP2</title>
 </head>
 <body>
-<div class="header">Это Хедер</div>
+<div class="header">
+    <p>Корзина: (<span id="cart-count"><?= \app\models\Cart::countItems()
+            // TODO Реализовать вывод счетчика товара в корзине
+            ?></span>)</p>
+</div>
 <div class="container">
     <?=$content?>
 </div>
-<div class="footer">Это футер</div>
+<div class="footer">
+</div>
+<script src="/js/jquery-3.3.1.js"></script>
+<!--<script src="/js/main.js"></script>-->
+<script>
+    $(document).ready(function(){
+        $(".add-to-cart").click(function () {
+            let id = $(this).attr("data-id");
+            $.post("/cart/add?id="+id, {}, function (data) {
+                $("#1cart-count").html(data);
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

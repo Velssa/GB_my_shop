@@ -2,9 +2,8 @@
 
 namespace app\controllers;
 
-
-
 use app\interfaces\IRenderer;
+
 
 abstract class Controller
 {
@@ -24,11 +23,13 @@ abstract class Controller
     {
         $this->action = $action ?: $this->defaultAction;
         $method = "action" . ucfirst($this->action);
-
         if(method_exists($this, $method)){
             $this->$method();
         }else{
-            echo "404";
+            http_response_code(404);
+            $error = "Ошибка 404";
+            echo $this->render("error", ['error' => $error]);
+            die();
         }
     }
 

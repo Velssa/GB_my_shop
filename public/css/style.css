@@ -1,3 +1,7 @@
+/** {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
 
 .header {
     height: 100px;
@@ -30,6 +34,41 @@ h1 {
     margin: 5px;
     border: 1px solid #cccccc;
     padding: 10px;
+}
+
+.cart-row {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.cart-name {
+    text-align: left;
+    width: 350px;
+}
+
+.cart-price {
+     text-align: center;
+    width: 150px;
+ }
+
+.cart-count {
+    text-align: center;
+    width: 150px;
+}
+
+.cart-close {
+    text-align: right;
+    color: red;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.error {
+    text-align: center;
 }
 
 .footer {

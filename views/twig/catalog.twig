@@ -4,6 +4,7 @@
         <h1>{{ value.name }}</h1>
         <p>{{ value.description }}</p>
         <p>$ {{ value.price }}</p>
+        <a href="cart/add?id={{ value.id }}">Купить</a>
     </div>
     {% endfor %}
 </div>

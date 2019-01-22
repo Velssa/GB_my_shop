@@ -20,7 +20,6 @@ class Product extends Record
         $category_id = null,
         $vendor_id = null)
     {
-        parent::__construct();
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -29,8 +28,10 @@ class Product extends Record
         $this->vendor_id = $vendor_id;
     }
 
-    public static function getTableName():string {
-        return 'products';
+
+    public function getShortDescription()
+    {
+        return mb_scrub($this->description, 150);
     }
 }
 

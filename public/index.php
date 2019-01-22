@@ -3,14 +3,16 @@
 include '../config/main.php';
 include '../vendor/autoload.php';
 
-$controllerName = $_GET['c'] ?: DEFAULT_CONTROLLER;
-$actionName = $_GET['a'];
+
+$request = new \app\services\Request();
+$controllerName = $request->getControllerName() ?: DEFAULT_CONTROLLER;
+$actionName = $request->getActionName();
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 
 if(class_exists($controllerClass)){
     $controller = new $controllerClass(
-        new \app\services\renderers\TwigRenderer()
+        new \app\services\renderers\TemplateRenderer()
     );
     $controller->runAction($actionName);
 }

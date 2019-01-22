@@ -28,7 +28,6 @@ class Db implements IDb
                 $this->config['login'],
                 $this->config['password']
             );
-
             $this->conn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         }
         return $this->conn;
